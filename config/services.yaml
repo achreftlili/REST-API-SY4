@@ -1,7 +1,12 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-
+    locale: 'en'
+    model.client.class: 'App\Entity\Client'
+    fos_oauth_server.model.client.class:  'App\Entity\Client'
+    fos_oauth_server.model.access_token.class:  'App\Entity\AccessToken'
+    fos_oauth_server.model.auth_code.class:  'App\Entity\AuthCode'
+    fos_oauth_server.model.refresh_token.class:  'App\Entity\RefreshToken'
 services:
     # default configuration for services in *this* file
     _defaults:
@@ -27,3 +32,8 @@ services:
     # please note that last definitions always *replace* previous ones
     sensio_framework_extra.view.listener:
         alias: Sensio\Bundle\FrameworkExtraBundle\EventListener\TemplateListener
+
+    FOS\OAuthServerBundle\Entity\ClientManager:
+        arguments: ['@doctrine.orm.entity_manager','%model.client.class%']
+        autowire: true
+        public: true

@@ -16,7 +16,7 @@ use App\Entity\Article;
 /**
  * Brand controller.
  *
- * @Route("/")
+ * @Route("/api")
  */
 class ArticleController extends Controller
 {
